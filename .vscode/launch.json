@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "cortex-debug",
+            "request": "launch",
+            "configFiles": "board/stm32f429discovery.cfg",
+            "servertype": "stutil",
+            "cwd": "${workspaceRoot}",
+            "executable": "./test.elf",
+            "name": "Debug (ST-Util)",
+            "device": "STM32F429",
+            "v1": false
+        }
+    ]
+}
