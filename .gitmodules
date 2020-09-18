@@ -1,0 +1,3 @@
+[submodule "uC-sdk"]
+	path = uC-sdk
+	url = git@github.com:grumpycoders/uC-sdk.git
