@@ -2,15 +2,23 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "cortex-debug",
+            "type": "gdb",
             "request": "launch",
-            "configFiles": "board/stm32f429discovery.cfg",
-            "servertype": "stutil",
+            "name": "Debug gdb",
+            "gdbpath": "/usr/local/bin/arm-none-eabi-gdb",
+            "target": "./test.elf",
             "cwd": "${workspaceRoot}",
-            "executable": "./test.elf",
-            "name": "Debug (ST-Util)",
-            "device": "STM32F429",
-            "v1": false
+            "preLaunchTask": "OpenOCD",
+            "postDebugTask": "Stop OpenOCD",
+            "autorun": [
+                "target remote localhost:3333",
+                "symbol-file ./test.elf",
+                "interrupt",
+                "monitor reset halt",
+                "load ./test.elf",
+                "tbreak main"
+            ],
+            "valuesFormatting": "parseText"
         }
     ]
 }

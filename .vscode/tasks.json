@@ -2,18 +2,24 @@
   // See https://go.microsoft.com/fwlink/?LinkId=733558
   // for the documentation about the tasks.json format
   "version": "2.0.0",
-
+  "presentation": {
+    "panel": "new"
+  },
   "tasks": [
     {
       "label": "Make",
       "group": "build",
-      "presentation": {"reveal": "always"},
+      "presentation": {
+        "reveal": "always",
+        "showReuseMessage": false,
+        "clear": true
+      },
       "type": "shell",
       "command": "make",
-      // Use the standard less compilation problem matcher.
       "problemMatcher": {
           "owner": "c",
           "fileLocation": ["relative", "${workspaceRoot}"],
+          
           "pattern": {
               "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
               "file": 1,
@@ -22,6 +28,52 @@
               "severity": 4,
               "message": 5
           }
+      }
+    },
+    {
+      "label": "Clean",
+      "type": "shell",
+      "group": "build",
+      "command": "make clean",
+      "presentation": {
+        "reveal": "always",
+        "showReuseMessage": false,
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Stop OpenOCD",
+      "type": "shell",
+      "group": "build",
+      "command": "killall openocd",
+      "presentation": {
+        "reveal": "never",
+        "showReuseMessage": false,
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "OpenOCD",
+      "type": "shell",
+      "isBackground": true,
+      "command": "openocd -f board/stm32f429discovery.cfg",
+      "dependsOn": "Make",
+      "dependsOrder": "sequence",
+      "presentation": {
+        "reveal": "always",
+        "showReuseMessage": false,
+        "clear": true
+      },
+      "problemMatcher": {
+        "owner": "custom",
+        "pattern": { "regexp": "__________" },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "Info : stm32f4x.cpu: hardware has \\d+ breakpoints, \\d+ watchpoints",
+          "endsPattern": "Info : stm32f4x.cpu: hardware has \\d+ breakpoints, \\d+ watchpoints",
+        },
       }
     }
   ]
