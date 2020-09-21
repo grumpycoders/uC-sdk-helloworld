@@ -19,7 +19,6 @@
       "problemMatcher": {
           "owner": "c",
           "fileLocation": ["relative", "${workspaceRoot}"],
-          
           "pattern": {
               "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
               "file": 1,
@@ -45,7 +44,6 @@
     {
       "label": "Stop OpenOCD",
       "type": "shell",
-      "group": "build",
       "command": "killall openocd",
       "presentation": {
         "reveal": "never",

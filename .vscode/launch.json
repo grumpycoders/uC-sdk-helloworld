@@ -9,14 +9,13 @@
             "target": "./test.elf",
             "cwd": "${workspaceRoot}",
             "preLaunchTask": "OpenOCD",
-            "postDebugTask": "Stop OpenOCD",
+            //"postDebugTask": "Stop OpenOCD",
             "autorun": [
                 "target remote localhost:3333",
                 "symbol-file ./test.elf",
                 "interrupt",
                 "monitor reset halt",
-                "load ./test.elf",
-                "tbreak main"
+                "load ./test.elf"
             ],
             "valuesFormatting": "parseText"
         }
