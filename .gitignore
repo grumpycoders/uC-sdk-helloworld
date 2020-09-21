@@ -4,6 +4,8 @@
 *.elf
 *.bin
 *.swp
+*.out
+*.state.json
 .DS_Store
 Thumbs.db
 
